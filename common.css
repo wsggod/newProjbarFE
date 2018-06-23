@@ -1,0 +1,36 @@
+.proj{
+    display: flex;
+    flex-flow: row;
+    height: 160px;
+    padding: 0px 10px 0px 10px;
+    border-bottom: 1px solid #e9e9e9;
+    box-sizing: content-box;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.proj-pic {
+    padding-left: 10px;
+    width: 30%;
+    display: flex;
+    align-items: center;
+}
+
+.proj-pic .pic-img {
+    width: 125px;
+    height: 125px;
+    overflow: hidden;
+}
+
+.proj-pic .pic-img img{
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    object-fit: contain; 
+}
+.footer-info {
+    text-align: center;
+    color: #fff;
+    margin:20px 0 20px 0;
+    line-height: 24px;
+}
