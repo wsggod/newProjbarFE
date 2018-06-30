@@ -34,3 +34,25 @@
     margin:20px 0 20px 0;
     line-height: 24px;
 }
+/* 边线 */
+.layui-badge-rim, .layui-colla-content, .layui-colla-item, .layui-collapse, .layui-elem-field, .layui-form-pane .layui-form-item[pane], .layui-form-pane .layui-form-label, .layui-input, .layui-layedit, .layui-layedit-tool, .layui-quote-nm, .layui-select, .layui-tab-bar, .layui-tab-card, .layui-tab-title, .layui-tab-title .layui-this:after, .layui-textarea {
+    text-align: center;
+    border-color: #b8b8b8;
+}
+
+.loginForm {
+    text-align: center;
+    margin:0 33% 0 33%;
+    background: #ffffff;
+    width: auto;
+    height: 400px;
+}
+
+.public-form {
+    padding: 10% 10% 10% 0;
+}
+
+.login-form {
+    margin-left: -30px;
+    border-color: #dbdbdb;
+}
