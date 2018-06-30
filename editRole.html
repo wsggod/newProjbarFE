@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>项慕吧</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" media="all" href="layui/css/layui.css" />
+    <link rel="stylesheet" media="all" href="common.css" />
+</head>
+<body style="background-color: #eeeeee">
+    <!-- 导航栏 -->
+    <ul class="layui-nav">
+        <li class="layui-nav-item"><a href="index.html">项慕吧</a></li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">项目</a>
+          <dl class="layui-nav-child">
+            <dd><a href="">竞赛</a></dd>
+            <dd><a href="">外包</a></dd>
+            <dd><a href="">创业</a></dd>
+            <dd><a href="">实验</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">人才</a>
+          <dl class="layui-nav-child">
+            <dd><a href="">开发</a></dd>
+            <dd><a href="">产品</a></dd>
+            <dd><a href="">设计</a></dd>
+            <dd><a href="">运营</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="">个人中心</a>
+        </li>
+        <li class="layui-nav-item">
+          <a href="">注销</a>
+        </li>
+        <!-- <li class="layui-nav-item">
+          <a href="javascript:;">我的</a>
+          <dl class="layui-nav-child">
+            <dd><a href="">修改资料</a></dd>
+            <dd><a href="">消息通知</a></dd>
+            <dd><a href="">我的项目</a></dd>
+          </dl>
+        </li> -->
+    </ul>
+
+    
+            <br/>
+            <h1 align="center">编辑技能信息</h1>
+            <br/>
+            <div>
+            <br>
+            <form id="roleForm" method="POST" role="form" action="" class="layui-form layui-main">
+                <h3><b>人才信息</b></h3>
+                <br/>
+                <div id="role">
+                    <div class="layui-form-item">
+                        <br>
+                        <label class="layui-form-label"><b>人才类型</b></label>
+                        <div class="layui-input-inline"  style="width: 250px">
+                          <select name="role[type]" lay-verify="required">
+                            <option value=""></option>
+                            <option value="0">开发</option>
+                            <option value="1">产品</option>
+                            <option value="2">设计</option>
+                            <option value="3">运营</option>
+                          </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                            <label class="layui-form-label"><b>人才技能</b></label>
+                            <button type="button" id="skill_add" class="layui-btn layui-btn-normal layui-btn-xs" style="width:50px;float: right;">
+                                <i class="layui-icon">&#xe654;</i>
+                            </button>
+                            <button type="button" id="skill_del" class="layui-btn layui-btn-warm layui-btn-xs" style="width:50px;float: right;">
+                                <b>—</b>
+                            </button>
+                    </div>
+                    <label class="layui-word-aux">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;请填写至少一个掌握的技能，最多可填写三个</label>
+                    
+                    <div class="layui-form-item skill_item" id="skill_item">
+                        <br>
+                        <label class="layui-form-label">技能名称</label>
+                        <input type="text" lay-verify="required" name="role[skill][]" class="layui-input layui-input-inline skill" autocomplete="off" placeholder="技能名" />
+                            <label class="layui-form-label">熟练程度</label>
+                        <div class="layui-input-inline"  style="width: 250px">
+                            <select name="role[level][]" lay-verify="required" class="form-control level" style="width: 250px">
+                                <option value=""></option>
+                                <option value="1">入门</option>
+                                <option value="2">熟练</option>
+                                <option value="3">精通</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="skill_end"><br /></div>
+                </div>
+                <br/>
+                <div id="tag">
+                        <label class="layui-form-label"><b>人才标签</b></label>
+                        <br>
+                        <div class="layui-form-item">
+                        <label class="layui-word-aux">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最多可选择六个标签</label>
+                        <br>
+                        <label class="layui-form-label">标签：</label>
+                        <div class="layui-input-block">
+                                <input type="checkbox" name="tags[]" title="web" value="1"/>
+                                <input type="checkbox" name="tags[]" title="后端" value="2"/>
+                                <input type="checkbox" name="tags[]" title="前端" value="3"/>
+                                <input type="checkbox" name="tags[]" title="UI" value="4"/>
+                                <input type="checkbox" name="tags[]" title="嵌入式" value="5"/>
+                                <input type="checkbox" name="tags[]" title="通信" value="6"/>
+                                <input type="checkbox" name="tags[]" title="iOS" value="7"/>
+                                <input type="checkbox" name="tags[]" title="Android" value="8"/>
+                                <input type="checkbox" name="tags[]" title="产品" value="9"/>
+                                <input type="checkbox" name="tags[]" title="运营" value="10"/>
+                                <input type="checkbox" name="tags[]" title="云计算" value="11"/>
+                                <input type="checkbox" name="tags[]" title="大数据" value="12"/>
+                                <input type="checkbox" name="tags[]" title="游戏开发" value="13"/>
+                                <input type="checkbox" name="tags[]" title="算法" value="14"/>
+                                <input type="checkbox" name="tags[]" title="机器学习" value="15"/>
+                                <input type="checkbox" name="tags[]" title="运维" value="16" />
+                                <input type="checkbox" name="tags[]" title="数模编程" value="17"/>
+                                <input type="checkbox" name="tags[]" title="数模建模" value="18"/>
+                                <input type="checkbox" name="tags[]" title="数模论文" value="19"/>
+                                <input type="checkbox" name="tags[]" title="商业策划" value="20"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                      <button id="sub" class="layui-btn" lay-submit lay-filter="formDemo">确认修改</button>
+                    </div>
+                </div>
+            </form>
+    </div>
+    
+    
+    <div id="all-proj" style="padding: 5px 5px 20px 5px">
+    <!-- jquery取数据填充 -->
+    </div>
+
+
+<script src="jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="layui/layui.all.js" charset="utf-8"></script>
+<script>
+    var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+    var carousel = layui.carousel;
+    var form = layui.form;
+    //监听导航点击
+    element.on('nav(demo)', function(elem){
+        //console.log(elem)
+        layer.msg(elem.text());
+    });
+    //加减角色按钮状态判定
+    skillNum = $(".skill_item").length;
+        if(skillNum == 3){
+            $("#skill_add").addClass("layui-btn-disabled");
+            $("#skill_add").attr("disabled",true);
+        }
+        if(skillNum == 1){
+            $("#skill_del").addClass("layui-btn-disabled");
+            $("#skill_del").attr("disabled",true);
+        }
+
+        //添加技能
+        $("#skill_add").on('click',function(){
+            beforeNum = $(this).parent().nextAll(".skill_item").length;
+            var appendSkill = `
+            <div class="layui-form-item skill_item">
+                        <label class="layui-form-label">技能名称</label>
+                        <input type="text" name="role[skill][]" class="layui-input layui-input-inline skill" autocomplete="off" placeholder="技能名" />
+                    
+                            <label class="layui-form-label">熟练程度</label>
+                        <div class="layui-input-inline"  style="width: 250px">
+                            <select name="role[level][]" class="form-control level" style="width: 250px">
+                                <option value=""></option>
+                                <option value="1">入门</option>
+                                <option value="2">熟练</option>
+                                <option value="3">精通</option>
+                            </select>
+                        </div>
+                    </div>
+            `;
+            $(this).parent().parent().children().last().before(appendSkill);
+            afterNum = beforeNum + 1;
+            $(this).next().removeClass("layui-btn-disabled");
+            $(this).next().attr("disabled",false);
+            if(afterNum >= 3){
+                $(this).addClass("layui-btn-disabled");
+                $(this).attr("disabled",true);
+            }
+            form.render();
+        });
+        //删除技能
+        $("#skill_del").unbind('click');
+        $("#skill_del").on('click',function(){
+            beforeNum = $(this).parent().nextAll(".skill_item").length;
+            $(this).parent().parent().children().last().prev().remove();
+            afterNum = beforeNum - 1;
+            $(this).prev().removeClass("layui-btn-disabled");
+            $(this).prev().attr("disabled",false);
+            if(afterNum <= 1){
+                $(this).addClass("layui-btn-disabled");
+                $(this).attr("disabled",true);
+            }
+        });
+        //提交数据
+        $("#sub").on('click', function(){
+            $.ajax({
+                type: "POST",
+                url: "http://123.206.87.13:8081/public/editRole",
+                data: $("#roleForm").serialize(),
+                success: function(result) {
+                    if(result.status == 0) {
+                        layer.msg('修改成功！',{icon:1, shade: 0.5, time: 1200}, function(){
+                            window.location.href = 'index.html';
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 5, shade: 0.5, time: 1800});
+                    }
+                }
+            });
+        });
+</script>
+</body>
+</html>

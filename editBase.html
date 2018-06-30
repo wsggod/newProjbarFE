@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>项慕吧</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" media="all" href="layui/css/layui.css" />
+    <link rel="stylesheet" media="all" href="common.css" />
+</head>
+<body style="background-color: #eeeeee">
+    <!-- 导航栏 -->
+    <ul class="layui-nav">
+        <li class="layui-nav-item"><a href="index.html">项慕吧</a></li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">项目</a>
+          <dl class="layui-nav-child">
+            <dd><a href="">竞赛</a></dd>
+            <dd><a href="">外包</a></dd>
+            <dd><a href="">创业</a></dd>
+            <dd><a href="">实验</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">人才</a>
+          <dl class="layui-nav-child">
+            <dd><a href="">开发</a></dd>
+            <dd><a href="">产品</a></dd>
+            <dd><a href="">设计</a></dd>
+            <dd><a href="">运营</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="">个人中心</a>
+        </li>
+        <li class="layui-nav-item">
+          <a href="">注销</a>
+        </li>
+        <!-- <li class="layui-nav-item">
+          <a href="javascript:;">我的</a>
+          <dl class="layui-nav-child">
+            <dd><a href="">修改资料</a></dd>
+            <dd><a href="">消息通知</a></dd>
+            <dd><a href="">我的项目</a></dd>
+          </dl>
+        </li> -->
+    </ul>
+<br/>
+            <h1 align="center">编辑基本信息</h1>
+            <br/>
+    <div>
+            <br>
+            <form id="baseForm" action="" class="layui-form layui-main" method="POST">
+                <div class="layui-form-item">
+                            <label class="layui-form-label">昵称</label>
+                            <div class="layui-input-inline">
+                              <input type="text" name="nickname" style="width: 250px" placeholder="请输入昵称" value="" class="layui-input">
+                            </div>
+                </div>
+                <br/><div class="layui-form-item">
+                    <label class="layui-form-label">QQ</label>
+                    <div class="layui-input-inline">
+                      <input type="text" name="qq" style="width: 250px" placeholder="请输入QQ号码" value="" class="layui-input">
+                    </div>
+                </div>
+                <br/>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机</label>
+                    <div class="layui-input-inline">
+                      <input type="text" name="mobile" style="width: 250px" placeholder="请输入手机号码" value="" class="layui-input">
+                    </div>
+                </div>
+                <br/>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-block">
+                      <input type="radio" name="sex" value="男" title="男">
+                      <input type="radio" name="sex" value="女" title="女">
+                      <input type="radio" name="sex" value="保密" title="保密" checked>
+                    </div>
+                </div>
+                <br/>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                      <button id="sub" class="layui-btn" lay-submit lay-filter="formDemo">确认修改</button>
+                    </div>
+                </div>
+            </form>
+    </div>
+    
+    
+    <div id="all-proj" style="padding: 5px 5px 20px 5px">
+    <!-- jquery取数据填充 -->
+    </div>
+
+
+    <script src="jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script src="layui/layui.all.js" charset="utf-8"></script>
+    <script>
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        var form = layui.form;
+        var layer = layui.layer;
+        $("#sub").on('click', function(){
+            $.ajax({
+                type: "POST",
+                url: "http://123.206.87.13:8081/public/editBase",
+                data: $("#baseForm").serialize(),
+                success: function(result) {
+                    if(result.status == 0) {
+                        layer.msg('修改成功！',{icon:1, shade: 0.5, time: 1200}, function(){
+                            window.location.href = 'index.html';
+                        });
+                    }else{
+                        layer.msg(result.msg, {icon: 5, shade: 0.5, time: 1800});
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
