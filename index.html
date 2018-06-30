@@ -85,7 +85,7 @@
         ,anim: 'default' //切换动画方式
     });
     $(document).ready(function(){
-        $.get("http://123.206.87.13:8081/project", function(result, status){
+        $.get("http://localhost:8081/project", function(result, status){
           var projStr = "";
           console.log(result);
           if(result.code == 0) {

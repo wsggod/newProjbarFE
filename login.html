@@ -41,20 +41,19 @@
   <legend>进入项慕吧 - 登录</legend>
 </fieldset>
 <div class="loginForm">
-<form id="loginForm" class="layui-form public-form" method="POST" action="#">
+<form id="loginForm" class="layui-form public-form" method="POST">
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <input type="text" name="username" lay-verify="required" placeholder="用户名" class="layui-input login-form">
+            <input type="text" name="username" placeholder="用户名" class="layui-input login-form">
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <input type="password" name="password" lay-verify="required" placeholder="请输入您的密码" class="layui-input login-form">
+            <input type="password" name="password" placeholder="请输入您的密码" class="layui-input login-form">
         </div>
     </div>
-
-    <button id="sub" class="layui-btn layui-btn-fluid" style="margin: 30px 0 10px 30px;">登录</button>
 </form>
+<button id="sub" class="layui-btn layui-btn-fluid" style="width: 80%">登录</button>
 </div>
 
 <script src="jquery-3.3.1.min.js" charset="utf-8"></script>
@@ -63,19 +62,27 @@
     var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
     var form = layui.form;
     var layer = layui.layer;
-    $("#sub").on('click', function(){
+    $("#sub").on('click',function(){
+        var index = layer.load(0);
         $.ajax({
             type: "POST",
-            url: "http://123.206.87.13:8081/public/login",
+            url: "http://localhost:8081/public/login",
             data: $("#loginForm").serialize(),
             success: function(result) {
-                if(result.status == 0) {
+                layer.close(index);
+                if(result.code == 0) {
                     layer.msg('登录成功！',{icon:1, shade: 0.5, time: 1200}, function(){
                         window.location.href = 'index.html';
                     });
                 }else{
+                    console.log(result);
                     layer.msg(result.msg, {icon: 5, shade: 0.5, time: 1800});
                 }
+            },
+            error: function(result, status) {
+                layer.close(index);
+                console.log(result);
+                alert(result.readyState);
             }
         });
     });
