@@ -10,7 +10,7 @@
 </head>
 <body style="background-color: #eeeeee">
     <!-- 导航栏 -->
-    <ul class="layui-nav">
+    <ul class="layui-nav" id="nav">
         <li class="layui-nav-item"><a href="index.html">项慕吧</a></li>
         <li class="layui-nav-item">
           <a href="javascript:;">项目</a>
@@ -30,20 +30,6 @@
             <dd><a href="">运营</a></dd>
           </dl>
         </li>
-        <li class="layui-nav-item">
-          <a href="">个人中心</a>
-        </li>
-        <li class="layui-nav-item">
-          <a href="">注销</a>
-        </li>
-        <!-- <li class="layui-nav-item">
-          <a href="javascript:;">我的</a>
-          <dl class="layui-nav-child">
-            <dd><a href="">修改资料</a></dd>
-            <dd><a href="">消息通知</a></dd>
-            <dd><a href="">我的项目</a></dd>
-          </dl>
-        </li> -->
     </ul>
 <br/>
             <h1 align="center">编辑基本信息</h1>
@@ -51,32 +37,32 @@
     <div>
             <br>
             <form id="baseForm" action="" class="layui-form layui-main" method="POST">
+                <h3><b>个人信息</b></h3>
+                <br/>
                 <div class="layui-form-item">
-                            <label class="layui-form-label">昵称</label>
-                            <div class="layui-input-inline">
-                              <input type="text" name="nickname" style="width: 250px" placeholder="请输入昵称" value="" class="layui-input">
-                            </div>
+                <label class="layui-form-label">昵称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="nickname" lay-verify="required" style="width: 250px" placeholder="请输入昵称" value="" class="layui-input">
+                    </div>
                 </div>
                 <br/><div class="layui-form-item">
                     <label class="layui-form-label">QQ</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="qq" style="width: 250px" placeholder="请输入QQ号码" value="" class="layui-input">
+                      <input type="text" name="qq" lay-verify="required" style="width: 250px" placeholder="请输入QQ号码" value="" class="layui-input">
                     </div>
                 </div>
                 <br/>
                 <div class="layui-form-item">
                     <label class="layui-form-label">手机</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="mobile" style="width: 250px" placeholder="请输入手机号码" value="" class="layui-input">
+                      <input type="text" name="mobile" lay-verify="required" style="width: 250px" placeholder="请输入手机号码" value="" class="layui-input">
                     </div>
                 </div>
                 <br/>
                 <div class="layui-form-item">
                     <label class="layui-form-label">性别</label>
-                    <div class="layui-input-block">
-                      <input type="radio" name="sex" value="男" title="男">
-                      <input type="radio" name="sex" value="女" title="女">
-                      <input type="radio" name="sex" value="保密" title="保密" checked>
+                    <div class="layui-input-inline">
+                      <input type="text" name="sex" lay-verify="required" style="width: 250px" placeholder="男/女/保密" value="" class="layui-input">
                     </div>
                 </div>
                 <br/>
@@ -88,34 +74,31 @@
             </form>
     </div>
     
-    
-    <div id="all-proj" style="padding: 5px 5px 20px 5px">
-    <!-- jquery取数据填充 -->
-    </div>
-
-
     <script src="jquery-3.3.1.min.js" charset="utf-8"></script>
     <script src="layui/layui.all.js" charset="utf-8"></script>
+    <script src="base.js" charset="utf-8"></script>
     <script>
         var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
         var form = layui.form;
         var layer = layui.layer;
         $("#sub").on('click', function(){
+            var index = layer.load(0);
             $.ajax({
                 type: "POST",
-                url: "http://123.206.87.13:8081/public/editBase",
+                url: BASEURL + 'public/editBase',
                 data: $("#baseForm").serialize(),
                 success: function(result) {
-                    if(result.status == 0) {
+                    layer.close(index);
+                    if(result.code == 0) {
                         layer.msg('修改成功！',{icon:1, shade: 0.5, time: 1200}, function(){
-                            window.location.href = 'index.html';
+                            window.location.href = 'login.html';
                         });
                     }else{
                         layer.msg(result.msg, {icon: 5, shade: 0.5, time: 1800});
                     }
                 }
             });
-        });
+    });
     </script>
 </body>
 </html>
