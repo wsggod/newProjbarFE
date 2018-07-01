@@ -27,7 +27,7 @@ $(document).ready(function(){
                 </li>
                 `;
             }
-            $("#nav").append(appendStr);
+            $(".layui-nav").append(appendStr);
             $("#logout").on('click',function(){
                 $.ajax({
                     type: "GET",
