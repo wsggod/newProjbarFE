@@ -63,6 +63,7 @@
             type: "POST",
             url: BASEURL+"public/login",
             data: $("#loginForm").serialize(),
+            xhrFields: { withCredentials: true},
             success: function(result) {
                 layer.close(index);
                 if(result.code == 0) {
