@@ -30,20 +30,6 @@
             <dd><a href="">运营</a></dd>
           </dl>
         </li>
-        <li class="layui-nav-item">
-          <a href="login.html">登录</a>
-        </li>
-        <li class="layui-nav-item">
-          <a href="register.html">注册</a>
-        </li>
-        <!-- <li class="layui-nav-item">
-          <a href="javascript:;">我的</a>
-          <dl class="layui-nav-child">
-            <dd><a href="">修改资料</a></dd>
-            <dd><a href="">消息通知</a></dd>
-            <dd><a href="">我的项目</a></dd>
-          </dl>
-        </li> -->
     </ul>
 
     <!-- 轮播图 -->
@@ -68,15 +54,11 @@
 
 <script src="jquery-3.3.1.min.js" charset="utf-8"></script>
 <script src="layui/layui.all.js" charset="utf-8"></script>
+<script src="base.js" charset="utf-8"></script>
 <script>
     var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
     var carousel = layui.carousel;
     var form = layui.form;
-    //监听导航点击
-    element.on('nav(demo)', function(elem){
-        //console.log(elem)
-        layer.msg(elem.text());
-    });
     carousel.render({
         elem: '#test1'
         ,width: '100%' //设置容器宽度
@@ -84,8 +66,9 @@
         ,arrow: 'always' //始终显示箭头
         ,anim: 'default' //切换动画方式
     });
+    
     $(document).ready(function(){
-        $.get("http://123.206.87.13:8081/project", function(result, status){
+        $.get(BASEURL+"project", function(result, status){
           var projStr = "";
           console.log(result);
           if(result.code == 0) {
