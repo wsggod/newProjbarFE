@@ -1,5 +1,5 @@
-// const BASEURL = "http://123.206.87.13:8081/";
-const BASEURL = "http://localhost:8081/";
+const BASEURL = "http://123.206.87.13:8081/";
+// const BASEURL = "http://localhost:8081/";
 $(document).ready(function(){
     $.get(BASEURL + "public/loginCheck", function(result, status){
         var appendStr = "";
