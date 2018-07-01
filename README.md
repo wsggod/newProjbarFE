@@ -4,6 +4,7 @@
 ## 前后端代码仓库地址
 - 前端：https://github.com/wxjackie/newProjbarFE
 - 后端：https://github.com/wxjackie/newProjbarBE
+- API文档地址：https://github.com/wxjackie/newProjbarBE/tree/master/apidoc
 
 ## 基本技术栈
 
