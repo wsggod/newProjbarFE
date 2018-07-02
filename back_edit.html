@@ -3,42 +3,41 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>项慕吧</title>
+    <title>项慕吧后台</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" media="all" href="layui/css/layui.css" />
     <link rel="stylesheet" media="all" href="common.css" />
 </head>
 <body style="background-color: #eeeeee">
     <!-- 导航栏 -->
-    <ul class="layui-nav" id="nav">
-        <li class="layui-nav-item"><a href="index.html">项慕吧</a></li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">项目</a>
-          <dl class="layui-nav-child">
-            <dd><a href="">竞赛</a></dd>
-            <dd><a href="">外包</a></dd>
-            <dd><a href="">创业</a></dd>
-            <dd><a href="">实验</a></dd>
-          </dl>
-        </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">人才</a>
-          <dl class="layui-nav-child">
-            <dd><a href="">开发</a></dd>
-            <dd><a href="">产品</a></dd>
-            <dd><a href="">设计</a></dd>
-            <dd><a href="">运营</a></dd>
-          </dl>
-        </li>
-    </ul>
+    
 <br/>
-            <h1 align="center">编辑个人信息</h1>
+            <h1 align="center">修改用户信息</h1>
             <br/>
-    <div>
+            <div>   
             <br>
             <form id="baseForm" action="" class="layui-form layui-main" method="POST">
-                <h3><b>基本信息</b></h3>
-                <br/>
+                <h3><b>账号信息</b></h3>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline">
+                      <input type="text" name="username" lay-verify="required" style="width: 250px" placeholder="请输入要修改的用户名" value="" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户密码</label>
+                    <div class="layui-input-inline">
+                      <input type="text" name="password" lay-verify="required" style="width: 250px" placeholder="请输入要修改的密码" value="" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-block">
+                      <input type="radio" name="status" value="0" title="可用" checked>
+                      <input type="radio" name="status" value="1" title="禁用">
+                    </div>
+                </div>
+                <h3><b>个人信息</b></h3>
                 <div class="layui-form-item">
                     <label class="layui-form-label">性别</label>
                     <div class="layui-input-block">
@@ -50,18 +49,17 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">电话号码</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="phone" lay-verify="required" style="width: 250px" placeholder="请输入联系方式" value="" class="layui-input">
+                      <input type="text" name="phone" lay-verify="required" style="width: 250px" placeholder="请输入要修改的联系方式" value="" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">电子邮箱</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="email" lay-verify="required" style="width: 250px" placeholder="请输入邮箱地址" value="" class="layui-input">
+                      <input type="text" name="email" lay-verify="required" style="width: 250px" placeholder="请输入要修改的邮箱地址" value="" class="layui-input">
                     </div>
                 </div>
-                <br/>
-                <h3><b>技能信息</b></h3>
                 <br>
+                <h3><b>角色信息</b></h3>
                 <div class="layui-form-item">
                     <br>
                     <label class="layui-form-label">担任角色</label>
@@ -78,12 +76,12 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">技能</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="skill1" lay-verify="required" style="width: 250px"  placeholder="请输入你掌握的专业技能" value="" class="layui-input">
+                            <input type="text" name="skill1" lay-verify="required" style="width: 250px"  placeholder="请输入要修改的专业技能" value="" class="layui-input">
                         </div>
                     </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">自我介绍</label>
-                    <label class="layui-word-aux">可以填项目经历也可填个人经验和能力描述。</label>
+                    <label class="layui-word-aux">修改项目经历。</label>
                     <br>    
                     <div class="layui-input-inline">
                         <br>
