@@ -32,38 +32,73 @@
         </li>
     </ul>
 <br/>
-            <h1 align="center">编辑基本信息</h1>
+            <h1 align="center">编辑个人信息</h1>
             <br/>
     <div>
             <br>
             <form id="baseForm" action="" class="layui-form layui-main" method="POST">
-                <h3><b>个人信息</b></h3>
-                <br/>
-                <div class="layui-form-item">
-                <label class="layui-form-label">昵称</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="nickname" lay-verify="required" style="width: 250px" placeholder="请输入昵称" value="" class="layui-input">
-                    </div>
-                </div>
-                <br/><div class="layui-form-item">
-                    <label class="layui-form-label">QQ</label>
-                    <div class="layui-input-inline">
-                      <input type="text" name="qq" lay-verify="required" style="width: 250px" placeholder="请输入QQ号码" value="" class="layui-input">
-                    </div>
-                </div>
-                <br/>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">手机</label>
-                    <div class="layui-input-inline">
-                      <input type="text" name="mobile" lay-verify="required" style="width: 250px" placeholder="请输入手机号码" value="" class="layui-input">
-                    </div>
-                </div>
+                <h3><b>基本信息</b></h3>
                 <br/>
                 <div class="layui-form-item">
                     <label class="layui-form-label">性别</label>
-                    <div class="layui-input-inline">
-                      <input type="text" name="sex" lay-verify="required" style="width: 250px" placeholder="男/女/保密" value="" class="layui-input">
+                    <div class="layui-input-block">
+                      <input type="radio" name="sex" value="0" title="男">
+                      <input type="radio" name="sex" value="1" title="女">
+                      <input type="radio" name="sex" value="2" title="保密" checked>
                     </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">电话号码</label>
+                    <div class="layui-input-inline">
+                      <input type="text" name="phone" lay-verify="required" style="width: 250px" placeholder="请输入联系方式" value="" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">电子邮箱</label>
+                    <div class="layui-input-inline">
+                      <input type="text" name="email" lay-verify="required" style="width: 250px" placeholder="请输入邮箱地址" value="" class="layui-input">
+                    </div>
+                </div>
+                <br/>
+                <h3><b>技能信息</b></h3>
+                <br>
+                <div class="layui-form-item">
+                    <br>
+                    <label class="layui-form-label">担任角色</label>
+                    <div class="layui-input-inline"  style="width: 250px">
+                      <select name="roleID" lay-verify="required">
+                        <option value=""></option>
+                        <option value="0">开发</option>
+                        <option value="1">产品</option>
+                        <option value="2">设计</option>
+                        <option value="3">运营</option>
+                      </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">技能</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="skill1" lay-verify="required" style="width: 250px"  placeholder="请输入你掌握的专业技能" value="" class="layui-input">
+                        </div>
+                    </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">自我介绍</label>
+                    <label class="layui-word-aux">可以填项目经历也可填个人经验和能力描述。</label>
+                    <br>    
+                    <div class="layui-input-inline">
+                        <br>
+                            <input type="text" name="intro" lay-verify="required" style="width: 600px; height: 250px" value="" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-inline"  style="width: 250px">
+                        <select name="integer" lay-verify="required">
+                          <option value=""></option>
+                          <option value="0">空闲(可接受邀请)</option>
+                          <option value="1">忙碌(暂时不接受邀请)</option>
+                        </select>
+                      </div>
                 </div>
                 <br/>
                 <div class="layui-form-item">
@@ -85,7 +120,7 @@
             var index = layer.load(0);
             $.ajax({
                 type: "POST",
-                url: BASEURL + 'public/editBase',
+                url: BASEURL + 'user/profile/edit',
                 data: $("#baseForm").serialize(),
                 success: function(result) {
                     layer.close(index);
