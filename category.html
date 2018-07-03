@@ -16,10 +16,10 @@
           <a href="javascript:;">项目</a>
           <dl class="layui-nav-child">
             <dd><a href="index.html">所有</a></dd>
-            <dd><a href="index.html?cate=1">竞赛</a></dd>
-            <dd><a href="index.html?cate=2">外包</a></dd>
-            <dd><a href="index.html?cate=3">创业</a></dd>
-            <dd><a href="index.html?cate=4">实验</a></dd>
+            <dd><a href="category.html?cateId=1">竞赛</a></dd>
+            <dd><a href="category.html?cateId=2">外包</a></dd>
+            <dd><a href="category.html?cateId=3">创业</a></dd>
+            <dd><a href="category.html?cateId=4">实验</a></dd>
           </dl>
         </li>
         <li class="layui-nav-item">
@@ -70,13 +70,8 @@
     });
 
     $(document).ready(function(){
-        cateId = getQueryVariable("cate");
-        var getUrl = BASEURL + "project";
-        if (cateId) {
-            getUrl = BASEURL + "project/category/" + cateId;
-        }
         var index = layer.load(0);
-        $.get(getUrl, function(result, status){
+        $.get(BASEURL+"project", function(result, status){
           var projStr = "";
           if(result.code == 0) {
             layer.close(index);
@@ -113,7 +108,6 @@
           }
         });
     });
-    
 </script>
 </body>
 </html>

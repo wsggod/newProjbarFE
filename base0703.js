@@ -1,5 +1,5 @@
-const BASEURL = "http://123.206.87.13:8081/";
-// const BASEURL = "http://localhost:8081/";
+// const BASEURL = "http://123.206.87.13:8081/";
+const BASEURL = "http://localhost:8081/";
 //导航条判断渲染
 $(document).ready(function(){
     $.ajax({
@@ -42,3 +42,13 @@ $(document).ready(function(){
         }
     });
 });
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
