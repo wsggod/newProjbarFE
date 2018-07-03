@@ -1,5 +1,3 @@
-// const BASEURL = "http://123.206.87.13:8081/";
-const BASEURL = "http://localhost:8081/";
 //导航条判断渲染
 $(document).ready(function(){
     $.ajax({
