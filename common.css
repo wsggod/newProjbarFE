@@ -1,3 +1,7 @@
+body{
+    background-color: #eeeeee;
+}
+
 .proj{
     display: flex;
     flex-flow: row;
