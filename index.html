@@ -56,7 +56,6 @@
           if(result.code == 0) {
             layer.close(index);
             $.each(result.data, function(i,item){
-                console.log(item.name);
                 projStr += `
                 <div class="layui-col-md6 layui-col-sm12" style="padding:5px;">
                     <a href="projview.html?id=${item.id}">
@@ -75,16 +74,8 @@
                 </div>
                 `;
 
-                footerStr = `
-                <div class="layui-col-md12 layui-fluid-container" style="margin-top: 10px;;background: #383838;">
-                    <div class="footer-info">
-                      2018 - 项慕吧<br />
-                      ProjBar
-                    </div>
-                </div>
-                `
+                
                 $("#all-proj").html(projStr);
-                $("#all-proj").append(footerStr);
                 form.render();
             });
           }

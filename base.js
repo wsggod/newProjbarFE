@@ -1,7 +1,7 @@
 //导航条初始化
 var navStr = `
     <!-- 导航栏 -->
-    <ul class="layui-nav" id="nav">
+    <ul class="layui-nav layui-nav-left" id="nav">
         <li class="layui-nav-item"><a href="index.html">项慕吧</a></li>
         <li class="layui-nav-item">
           <a href="javascript:;">项目</a>
@@ -16,16 +16,26 @@ var navStr = `
         <li class="layui-nav-item">
           <a href="javascript:;">人才</a>
           <dl class="layui-nav-child">
-            <dd><a href="">所有</a></dd?
-            <dd><a href="">开发</a></dd>
-            <dd><a href="">产品</a></dd>
-            <dd><a href="">设计</a></dd>
-            <dd><a href="">运营</a></dd>
+            <dd><a href="partner.html">所有</a></dd?
+            <dd><a href="partner.html?role=1">开发</a></dd>
+            <dd><a href="partner.html?role=2">产品</a></dd>
+            <dd><a href="partner.html?role=3">设计</a></dd>
+            <dd><a href="partner.html?role=4">运营</a></dd>
           </dl>
         </li>
     </ul>
     `;
 $("body").prepend(navStr);
+footerStr = `
+<div class="layui-col-md12 layui-fluid-container" style="margin-top: 10px;;background: #383838; height: 160px;">
+    <div class="footer-info">
+        <br />
+        2018 - 项慕吧<br />
+        ProjBar
+    </div>
+</div>
+`;
+$("body").append(footerStr);
 $(document).ready(function(){
     $.ajax({
         type: "GET",
@@ -34,21 +44,25 @@ $(document).ready(function(){
         success: function(result, status) {
             if (result.code == 0) {
                 appendStr = `
-                <li class="layui-nav-item">
-                <a href="center.html">个人中心</a>
-                </li>
-                <li class="layui-nav-item">
-                <a href="javascript:;" id="logout">注销</a>
-                </li>
+                <ul class="layui-nav layui-layout-right">
+                    <li class="layui-nav-item"> 
+                    <a href="center.html">个人中心</a>
+                    </li>
+                    <li class="layui-nav-item">
+                    <a href="javascript:;" id="logout">注销</a>
+                    </li>
+                </ul>
                 `;
             }else{
                 appendStr = `
-                <li class="layui-nav-item">
-                <a href="login.html">登录</a>
-                </li>
-                <li class="layui-nav-item">
-                <a href="register.html">注册</a>
-                </li>
+                <ul class="layui-nav layui-layout-right">
+                    <li class="layui-nav-item">
+                    <a href="login.html">登录</a>
+                    </li>
+                    <li class="layui-nav-item">
+                    <a href="register.html">注册</a>
+                    </li>
+                </ul>
                 `;
             }
             console.log(appendStr);

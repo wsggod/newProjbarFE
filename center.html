@@ -12,12 +12,88 @@
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
   <legend>个人中心</legend>
 </fieldset>
+<div class="layui-container">
+  <table class="layui-table" lay-even="" lay-skin="nob">
+    <colgroup>
+      <col width="20%">
+      <col width="80%">
+    </colgroup>
+    <tbody>
+      <tr>
+        <td>用户名：</td>
+        <td id="username"></td>
+      </tr>
+      <tr>
+        <td>性别：</td>
+        <td id="sex"></td>
+      </tr>
+      <tr>
+        <td>手机：</td>
+        <td id="phone"></td>
+      </tr>
+      <tr>
+        <td>邮箱：</td>
+        <td id="email"></td>
+      </tr>
+      <tr>
+        <td>个性签名：</td>
+        <td id="intro">暂无</td>
+      </tr>
+      <tr>
+        <td>角色职能：</td>
+        <td id="role"></td>
+      </tr>
+      <tr>
+        <td colspan="2">技能&熟练度：</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+        <div style="background-color: #fcf8e3;border-radius:15px;padding:10px;">
+          <p id="skill">暂无</p>
+          <br />
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td><a href="" class="layui-btn layui-btn-fluid layui-btn-warm">修改密码</a></td>
+        <td><a href="" class="layui-btn layui-btn-fluid">编辑个人信息</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <script src="jquery-3.3.1.min.js" charset="utf-8"></script>
 <script src="config.js" charset="utf-8"></script>
 <script src="layui/layui.all.js" charset="utf-8"></script>
 <script>
-
+$(document).ready(function(){
+  var getUrl = BASEURL + "user/profile/center";
+  $.ajax({
+    type: "get",
+    url: getUrl,
+    xhrFields: {withCredentials: true},
+    success: function(result){
+      if(result.code == 0){
+        $("#username").text(result.data.username);
+        var sex = "保密";
+        if(result.data.sex == 1){
+          sex = "男";
+        }else if(result.data.sex == 2){
+          sex = "女";
+        }
+        $("#sex").text(sex);
+        $("#phone").text(result.data.phone);
+        $("#email").text(result.data.email);
+        if(result.data.intro != null){
+          $("#intro").text(result.data.intro);
+        }
+        $("#role").text(result.data.roleId);
+        $("#skill").html(result.data.skill);
+        
+      }
+    }
+  });
+});
 </script>
 </body>
 </html>
