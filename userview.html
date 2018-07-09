@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>项慕吧</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" media="all" href="layui/css/layui.css" />
+    <link rel="stylesheet" media="all" href="common.css" />
+</head>
+<body style="background-color:#eeeeee">
+    <ul class="layui-nav" id="nav">
+        <li class="layui-nav-item"><a href="index.html">项慕吧</a></li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">项目</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">竞赛</a></dd>
+                <dd><a href="">外包</a></dd>
+                <dd><a href="">创业</a></dd>
+                <dd><a href="">实验</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">人才</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">开发</a></dd>
+                <dd><a href="">产品</a></dd>
+                <dd><a href="">设计</a></dd>
+                <dd><a href="">运营</a></dd>
+            </dl>
+        </li>
+    </ul>
+    <br />
+    <script src="jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script src="config.js" charset="utf-8"></script>
+    <script src="layui/layui.all.js" charset="utf-8"></script>
+    <div id="all-proj" style="padding: 5px 5px 20px 5px">
+        <!-- jquery取数据填充 -->
+    </div>
+    <div>
+        <center><p><button class="layui-btn btn-block btn-myblue" id="invite">邀请加入</button></p></div></center>
+    </div>
+    <script>
+    $(document).ready(function(){
+        //cateId = getQueryVariable("id");
+        cateId = 9;
+		var getUrl = BASEURL + "user/" + cateId;
+        //var index = layer.load(0);
+        $.get(getUrl, function(result, status){
+            item = result.data;
+            if(result.code == 0) {
+                var projStr = "";
+                if(item.sex == 0) {
+                    projStr+=
+                    `
+                    <div class="layui-container" style="padding-top:10px;">
+                        <center><legend style="font-size:36px;border-color:#bbb;">apathetically</legend></center><br/>
+                        <hr />
+                        <h2>基础信息</h2>
+                        <table class="layui-table" lay-even lay-skin="nob">
+                            <colgroup>
+                            <col width="35%">
+                            <col width="65%">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td>昵称：</td>
+                                <td>
+                                    ${item.username}&emsp;
+                                    <i class="layui-icon" style="color:rgba(0, 162, 255, 0.651);">&#xe662;</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>用户ID：</td>
+                                <td>${item.id}</td>
+                            </tr>
+                            <tr>
+                                <td>QQ和邮箱：</td>
+                                <td>${item.phone}&${item.email}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br />
+                        <h2>角色信息</h2>
+                            <p style="color:grey;text-align:center;">开发&编程</p>    
+                            <table class="layui-table" lay-even lay-skin="nob">
+                                <colgroup>
+                                    <col width="35%">
+                                    <col width="65%">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td>个人角色</td>
+                                        <td>${item.roleId}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>个人技能</td>
+                                        <td>${item.skill}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                        <br />
+                        <h2>项目经历</h2>
+                        <table class="layui-table" lay-even lay-skin="nob", item-width="1000">
+                            <colgroup>
+                            <col width="35%">
+                            <col width="65%">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td width="300" height="100" align = "left" valign="top">${item.intro}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br /> 
+                    </div>
+                    `
+                }
+                else if(item.sex == 1) {
+                    projStr+=
+                    `
+                    <div class="layui-container" style="padding-top:10px;">
+                        <center><legend style="font-size:36px;border-color:#bbb;">apathetically</legend></center><br/>
+                        <hr />
+                        <h2>基础信息</h2>
+                        <table class="layui-table" lay-even lay-skin="nob">
+                            <colgroup>
+                            <col width="35%">
+                            <col width="65%">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td>昵称：</td>
+                                <td>
+                                    ${item.username}&emsp;
+                                    <i class="layui-icon" style="color:rgb(245, 94, 194)">&#xe661;</i> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>用户ID：</td>
+                                <td>${item.id}</td>
+                            </tr>
+                            <tr>
+                                <td>QQ和邮箱：</td>
+                                <td>${item.phone}&${item.email}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br />
+                        <h2>角色信息</h2>
+                            <p style="color:grey;text-align:center;">开发&编程</p>    
+                            <table class="layui-table" lay-even lay-skin="nob">
+                                <colgroup>
+                                    <col width="35%">
+                                    <col width="65%">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td>个人角色</td>
+                                        <td>${item.roleId}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>个人技能</td>
+                                        <td>${item.skill}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                        <br />
+                        <h2>项目经历</h2>
+                        <table class="layui-table" lay-even lay-skin="nob", item-width="1000">
+                            <colgroup>
+                            <col width="35%">
+                            <col width="65%">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td width="300" height="100" align = "left" valign="top">${item.intro}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br /> 
+                    </div>
+                    `
+                }
+                else {
+                    projStr+=
+                    `
+                    <div class="layui-container" style="padding-top:10px;">
+                        <center><legend style="font-size:36px;border-color:#bbb;">apathetically</legend></center><br/>
+                        <hr />
+                        <h2>基础信息</h2>
+                        <table class="layui-table" lay-even lay-skin="nob">
+                            <colgroup>
+                            <col width="35%">
+                            <col width="65%">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td>昵称：</td>
+                                <td>
+                                    ${item.username}&emsp;
+                                    <i class="layui-icon" style="color:rgba(216, 216, 110, 0.938)">&#xe607;</i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>用户ID：</td>
+                                <td>${item.id}</td>
+                            </tr>
+                            <tr>
+                                <td>QQ和邮箱：</td>
+                                <td>${item.phone}&${item.email}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br />
+                        <h2>角色信息</h2>
+                            <p style="color:grey;text-align:center;">开发&编程</p>    
+                            <table class="layui-table" lay-even lay-skin="nob">
+                                <colgroup>
+                                    <col width="35%">
+                                    <col width="65%">
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td>个人角色</td>
+                                        <td>${item.roleId}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>个人技能</td>
+                                        <td>${item.skill}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                        <br />
+                        <h2>项目经历</h2>
+                        <table class="layui-table" lay-even lay-skin="nob", item-width="1000">
+                            <colgroup>
+                            <col width="35%">
+                            <col width="65%">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <td width="300" height="100" align = "left" valign="top">${item.intro}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br /> 
+                    </div>
+                    `
+                }
+                $("#all-proj").html(projStr);
+            }
+        });
+        $("#invite").click(function(){
+			layer.msg('邀请成功！',{icon:1, shade: 0.5, time: 1200}, function(){
+                window.location.href = 'index.html';
+			});
+		});
+    });
+    </script>
+</body>
+</html>
