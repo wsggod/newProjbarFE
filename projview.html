@@ -11,13 +11,102 @@
 <body style="background-color: #eeeeee">
 
 <script src="jquery-3.3.1.min.js" charset="utf-8"></script>
-<script src="layui/layui.all.js" charset="utf-8"></script>
 <script src="config.js" charset="utf-8"></script>
+<script src="layui/layui.all.js" charset="utf-8"></script>
+<div id="all-proj" style="padding: 5px 5px 20px 5px">
+	<!-- jquery取数据填充 -->
+</div>
+<div>
+	<center><p><button class="layui-btn btn-block btn-myblue" id="request">申请加入</button></p></div></center>
+</div>
 <script>
     var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
     var carousel = layui.carousel;
     var form = layui.form;
     var layer = layui.layer;
+</script>
+<script>
+	var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+	var form = layui.form;
+	var layer = layui.layer;
+	$(document).ready(function(){
+		cateId = getQueryVariable("id");
+		var getUrl = BASEURL + "project/" + cateId;
+		$.get(getUrl, function(result, status){
+			// alert(result.data.name);
+			item = result.data;
+			if(result.code == 0) {
+				var projStr = "";
+				projStr+=
+				`
+				<div class="layui-container" style="padding-top:10px;">
+					<center><legend style="font-size:36px;border-color:#bbb;">${item.name}</legend></center><br/>
+					<hr />
+					<h2>基础信息</h2>
+					<table class="layui-table" lay-even lay-skin="nob">
+						<colgroup>
+						<col width="35%">
+						<col width="65%">
+						</colgroup>
+						<tbody>
+						<tr>
+							<td>项目发起人：</td>
+							<td>${item.leaderId}</td>
+						</tr>
+						<tr>
+							<td>项目类型：</td>
+							<td>
+								${item.cateId}&emsp;
+							</td>
+						</tr>
+						<tr>
+							<td>项目创建时间：</td>
+							<td>${item.createTime}</td>
+						</tr>
+						<tr>
+							<td>项目发布时间：</td>
+							<td>${item.updateTime}</td>
+						</tr>
+						</tbody>
+					</table>
+					<br />
+					<h2>项目介绍</h2>
+					<table class="layui-table" lay-even lay-skin="nob", item-width="1000">
+						<colgroup>
+						<col width="35%">
+						<col width="65%">
+						</colgroup>
+						<tbody>
+						<tr>
+							<td width="300" height="100" align = "left" valign="top">${item.intro}</td>
+						</tr>
+						</tbody>
+					</table>
+					<br />
+					<h2>项目需求</h2>
+					<table class="layui-table" lay-even lay-skin="nob", item-width="1000">
+						<colgroup>
+						<col width="35%">
+						<col width="65%">
+						</colgroup>
+						<tbody>
+						<tr>
+							<td width="300" height="100" align = "left" valign="top">${item.need}</td>
+						</tr>
+						</tbody>
+					</table>
+					<br /> 
+				</div>
+				`
+				$("#all-proj").html(projStr);
+			}
+		});
+		$("#request").click(function(){
+			layer.msg('申请成功！',{icon:1, shade: 0.5, time: 1200}, function(){
+                window.location.href = 'index.html';
+			});
+		});
+});
 </script>
 </body>
 </html>
