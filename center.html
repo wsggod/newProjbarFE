@@ -61,11 +61,30 @@
     </tbody>
   </table>
 </div>
+<div class="layui-collapse" lay-filter="test">
+  <div class="layui-colla-item">
+    <h3 class="layui-colla-title">通知消息</h3>
+    <div class="layui-colla-content layui-show" id="notify">
+    </div>
+  </div>
+  <div class="layui-colla-item">
+    <h2 class="layui-colla-title">我的项目</h2>
+    <div class="layui-colla-content" id="myproj">
+    </div>
+  </div>
+  <div class="layui-colla-item">
+    <h2 class="layui-colla-title">反馈信息</h2>
+    <div class="layui-colla-content">
+      <p>这个是用来占地方的，邮箱xjinw@outlook.com</p>
+    </div>
+  </div>
+</div>
 
 <script src="jquery-3.3.1.min.js" charset="utf-8"></script>
 <script src="config.js" charset="utf-8"></script>
 <script src="layui/layui.all.js" charset="utf-8"></script>
 <script>
+var form = layui.form;
 $(document).ready(function(){
   var getUrl = BASEURL + "user/profile/center";
   $.ajax({
@@ -90,6 +109,96 @@ $(document).ready(function(){
         $("#role").text(result.data.roleId);
         $("#skill").html(result.data.skill);
         
+      }
+    }
+  });
+  var msgIndex = layer.load(0, {shade: 0.5});
+  $.ajax({
+    type: "GET",
+    url: BASEURL + "user/message",
+    xhrFields: {withCredentials: true},
+    success: function(result){
+      layer.close(msgIndex);
+      if(result.code == 0){
+        var msgStr = "";
+        $.each(result.data, function(i, item){
+          var singleStr = "";
+          switch(item.type){
+            case 1:
+              singleStr = `<div id="msg${item.id}">
+              <h3>${item.fromName}申请加入你的项目：${item.projName}</h3><br />
+              <p><button class="layui-btn accept" data-mid="${item.id}">接受</button>&emsp;<button class="layui-btn layui-btn-warm refuse" data-mid="${item.id}">拒绝</button></p>
+              </div>`;
+              break;
+            case 2:
+              singleStr = `<div id="msg${item.id}">
+              <h3>${item.fromName}邀请你加入项目：${item.projName}</h3><br />
+              <p><button class="layui-btn accept" data-mid="${item.id}">接受</button>&emsp;<button class="layui-btn layui-btn-warm refuse" data-mid="${item.id}">拒绝</button></p>
+              </div>
+              `;
+              break;
+            case 3:
+              singleStr = `<div id="msg${item.id}">
+              <h3>${item.fromName}同意了您的请求，相关项目：${item.projName}</h3><br />
+              <p><button class="layui-btn confirm" data-mid="${item.id}">我知道了</button></p>
+              </div>
+              `;
+              break;
+            case 4:
+              singleStr = `<div id="msg${item.id}">
+              <h3>${item.fromName}拒绝了您的请求，相关项目：${item.projName}</h3><br />
+              <p><button class="layui-btn confirm" data-mid="${item.id}">我知道了</button></p>
+              </div>
+              `;
+              break;
+          }
+          msgStr += singleStr;
+        });
+        $("#notify").html(msgStr);
+        form.render();
+        //接受
+        $(".accept").on('click',function(){
+          var mid = $(this).attr("data-mid");
+          var acIndex = layer.load(0);
+          $.ajax({
+            type: "PUT",
+            url: BASEURL + "user/message",
+            data: {"id": mid, "handleStatus": 1},
+            success: function(result){
+              layer.close(acIndex);
+              if(result.code == 0){
+                layer.msg('接受成功！可在我的项目中查看详情~',{icon:1, time: 1600});
+                $("#msg"+mid).remove();
+              }else{
+                console.log(result);
+              }
+            }
+          });
+        });
+      }
+    }
+  });
+  $.ajax({
+    type: "GET",
+    url: BASEURL + "user/myProject",
+    xhrFields: { withCredentials: true},
+    success: function(result) {
+      var viewUrl = "projview.html?id=";
+      if(result.code == 0){
+        var projStr = "";
+        $.each(result.data, function(i, item){
+          projStr += `
+          <p>
+            <a href="${viewUrl}${item.id}"><h3>${item.name}</h3></a><br />
+            ${item.intro}
+          </p>
+          `;
+        });
+        $("#myproj").html(projStr);
+      }else if(result.code == 2){
+        layer.msg('您还未登录，请登录后再进行操作~',{icon:5, shade: 0.5, time: 1500}, function(){
+          window.location.href = 'login.html';
+        });
       }
     }
   });

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>项慕吧</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" media="all" href="layui/css/layui.css" />
+    <link rel="stylesheet" media="all" href="common.css" />
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+  <legend><h3>发布项目</h3></legend>
+</fieldset>
+<div class="layui-container">
+  <form class="layui-form layui-form-pane" id="releaseForm" action="#">
+    <div class="layui-form-item">
+      <label class="layui-form-label">项目名称</label>
+      <div class="layui-input-block">
+        <input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入项目名" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">项目类型</label>
+      <div class="layui-input-block">
+        <select name="cateId">
+          <option value="">请选择</option>
+          <option value="1">竞赛</option>
+          <option value="2">创业</option>
+          <option value="3">实验课题</option>
+          <option value="4">外包</option>
+          <option value="5">其他</option>
+        </select>
+      </div>
+    </div>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>项目介绍</legend>
+    </fieldset>
+    <div class="layui-form-item layui-form-text">
+      <div class="layui-input-block">
+        <textarea name="intro" placeholder="请输入项目介绍，比如背景和时间周期，成果回报等。" class="layui-textarea"></textarea>
+      </div>
+    </div>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>需求角色</legend>
+    </fieldset>
+    <div class="layui-form-item layui-form-text">
+      <div class="layui-input-block">
+        <textarea name="need" placeholder="请输入角色需求，比如：两名熟练Vue.js的前端开发人员，一名精通Spring Boot的后端开发人员。" class="layui-textarea"></textarea>
+      </div>
+    </div>
+  </form>
+  <div class="layui-container">
+      <button class="layui-btn layui-btn-fluid" id="release">确认发布项目</button>
+  </div>
+</div>
+<script src="jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="config.js" charset="utf-8"></script>
+<script src="layui/layui.all.js" charset="utf-8"></script>
+<script>
+$("#release").on("click", function(){
+  var index = layer.load(0);
+  $.ajax({
+    type: "POST",
+    url: BASEURL + "project",
+    data: $("#releaseForm").serialize(),
+    xhrFields: {withCredentials: true},
+    success: function(result){
+      layer.close(index);
+      if(result.code == 0) {
+        layer.msg('发布成功！',{icon:1, shade: 0.5, time: 1200}, function(){
+          window.location.href = 'partner.html';
+        });
+      }else{
+        console.log(result);
+        layer.msg(result.msg, {icon: 5, shade: 0.5, time: 1800});
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>

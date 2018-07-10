@@ -60,3 +60,21 @@ body{
     margin-left: -30px;
     border-color: #dbdbdb;
 }
+
+.layui-colla-title{
+    background-color: #ffffff;
+}
+.layui-colla-item{
+    background-color: #ffffff;
+    border-color: #cac7c7;
+}
+.layui-colla-content{
+    background-color: #f2f2f2;
+}
+.layui-form-label{
+    background-color: #009688!important;
+    color: aliceblue;
+}
+.layui-layer-molv .layui-layer-title{
+    background: #494749!important;
+}

@@ -16,7 +16,7 @@ var navStr = `
         <li class="layui-nav-item">
           <a href="javascript:;">人才</a>
           <dl class="layui-nav-child">
-            <dd><a href="partner.html">所有</a></dd?
+            <dd><a href="partner.html">所有</a></dd>
             <dd><a href="partner.html?role=1">开发</a></dd>
             <dd><a href="partner.html?role=2">产品</a></dd>
             <dd><a href="partner.html?role=3">设计</a></dd>
@@ -27,7 +27,7 @@ var navStr = `
     `;
 $("body").prepend(navStr);
 footerStr = `
-<div class="layui-col-md12 layui-fluid-container" style="margin-top: 10px;;background: #383838; height: 160px;">
+<div class="layui-col-md12 layui-fluid-container" style="margin-top: 30px;;background: #383838; height: 160px;">
     <div class="footer-info">
         <br />
         2018 - 项慕吧<br />
@@ -45,6 +45,9 @@ $(document).ready(function(){
             if (result.code == 0) {
                 appendStr = `
                 <ul class="layui-nav layui-layout-right">
+                    <li class="layui-nav-item">
+                    <a href="release.html">发布项目</a>
+                    </li>
                     <li class="layui-nav-item"> 
                     <a href="center.html">个人中心</a>
                     </li>
@@ -65,7 +68,6 @@ $(document).ready(function(){
                 </ul>
                 `;
             }
-            console.log(appendStr);
             $(".layui-nav").append(appendStr);
             $("#logout").on('click',function(){
                 $.ajax({
